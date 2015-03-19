@@ -46,8 +46,8 @@ const int col[4] = {
 int pixels[4][4];          
 
 // cursor position:
-int x = 5;
-int y = 5;
+int x = 2;
+int y = 2;
 
 void setup() {
   // initialize the I/O pins as outputs
@@ -81,8 +81,8 @@ void readSensors() {
   // turn off the last position:
   pixels[x][y] = HIGH;
   // read the sensors for X and Y values:
-  x = 7 - map(analogRead(A0), 0, 1023, 0, 7);
-  y = map(analogRead(A1), 0, 1023, 0, 7);
+  x = 3 - map(analogRead(A0), 0, 1023, 0, 3);
+  y = map(analogRead(A1), 0, 1023, 0, 3);
   // set the new pixel position low so that the LED will turn on
   // in the next screen refresh:
   pixels[x][y] = LOW;
