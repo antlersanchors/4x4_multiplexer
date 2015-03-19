@@ -50,8 +50,12 @@ int x = 2;
 int y = 2;
 
 void setup() {
+
+  Serial.begin(9600);
+
   // initialize the I/O pins as outputs
   // iterate over the pins:
+
   for (int thisPin = 0; thisPin < 4; thisPin++) {
     // initialize the output pins:
     pinMode(col[thisPin], OUTPUT);
@@ -83,6 +87,10 @@ void readSensors() {
   // read the sensors for X and Y values:
   x = 3 - map(analogRead(A0), 0, 1023, 0, 3);
   y = map(analogRead(A1), 0, 1023, 0, 3);
+  Serial.print("Sensor A0: ");
+  Serial.println(analogRead(A0));
+  Serial.print("Sensor A1: ");
+  Serial.println(analogRead(A1));
   // set the new pixel position low so that the LED will turn on
   // in the next screen refresh:
   pixels[x][y] = LOW;
@@ -98,6 +106,10 @@ void refreshScreen() {
     for (int thisCol = 0; thisCol < 4; thisCol++) {
       // get the state of the current pixel;
       int thisPixel = pixels[thisRow][thisCol];
+
+      Serial.print("pixels :");
+      Serial.println(pixels[thisRow][thisCol]);
+
       // when the row is HIGH and the col is LOW,
       // the LED where they meet turns on:
       digitalWrite(col[thisCol], thisPixel);
