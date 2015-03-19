@@ -36,11 +36,13 @@
 
 // 2-dimensional array of row pin numbers:
 const int row[4] = {
-	6,3,4,8 };
-	
+	8,4,3,6 };
+	// 8,4,3,6 };
+
 // 2-dimensional array of column pin numbers:
 const int col[4] = {
 	2,7,5,12};
+	// 2,7,5,12};
 
 // 2-dimensional array of pixels:
 int pixels[4][4];          
@@ -92,6 +94,7 @@ void readSensors() {
   // Serial.println(analogRead(A2));
   // Serial.print("Sensor A1: ");
   // Serial.println(analogRead(A1));
+  
   // set the new pixel position low so that the LED will turn on
   // in the next screen refresh:
   pixels[x][y] = LOW;
@@ -108,8 +111,8 @@ void refreshScreen() {
       // get the state of the current pixel;
       int thisPixel = pixels[thisRow][thisCol];
 
-      Serial.print("pixels :");
-      Serial.println(pixels[thisRow][thisCol]);
+      // Serial.print("pixels :");
+      // Serial.println(pixels[thisRow][thisCol]);
 
       // when the row is HIGH and the col is LOW,
       // the LED where they meet turns on:
