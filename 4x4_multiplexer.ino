@@ -120,8 +120,9 @@ void readSensors() {
   // turn off the last position:
   pixels[x][y] = HIGH;
   // read the sensors for X and Y values:
-  x = 3 - map(analogRead(sensor1), sensorLow1, sensorHigh1, 0, 3);
-  y = map(analogRead(sensor2), sensorLow2, sensorHigh2, 0, 3);
+  // shave a bit of the top to help with mapping to the full 4 pixel range
+  x = 3 - map(analogRead(sensor1), sensorLow1, sensorHigh1 * 0.9, 0, 3);
+  y = map(analogRead(sensor2), sensorLow2, sensorHigh2 * 0.9, 0, 3);
 
 
   // Serial.print("Sensor A2: ");
