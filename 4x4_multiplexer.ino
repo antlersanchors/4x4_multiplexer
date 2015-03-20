@@ -51,9 +51,42 @@ int pixels[4][4];
 int x = 2;
 int y = 2;
 
+// define sensors
+#define sensor1 A1
+#define sensor2 A2
+
+// calibration variables
+int sensorHigh1;
+int sensorLow1;
+int sensorHigh2;
+int sensorLow2;
+int sensorValue1;
+int sensorValue2;
+
 void setup() {
 
   Serial.begin(9600);
+
+  // calibrate our pots
+  while (millis() < 5000) {
+  	sensorValue1 = analogRead(sensor1);
+
+  	if (sensorValue1 > sensorHigh1) {
+  		sensorHigh1 = sensorValue1;
+  	}
+  	if (sensorValue1 < sensorLow1) {
+  		sensorLow1 = sensorValue1;
+  	}
+
+  	sensorValue2 = analogRead(sensor2);
+
+  	if (sensorValue2 > sensorHigh2) {
+  		sensorHigh2 = sensorValue2;
+  	}
+  	if (sensorValue2 < sensorLow2) {
+  		sensorLow2 = sensorValue2;
+  	}
+  }
 
   // initialize the I/O pins as outputs
   // iterate over the pins:
