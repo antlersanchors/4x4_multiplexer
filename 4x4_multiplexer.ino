@@ -56,10 +56,10 @@ int y = 2;
 #define sensor2 A2
 
 // calibration variables
-int sensorHigh1;
-int sensorLow1;
-int sensorHigh2;
-int sensorLow2;
+int sensorHigh1 = 0;
+int sensorLow1 = 1023;
+int sensorHigh2 = 0;
+int sensorLow2 = 1023;
 int sensorValue1;
 int sensorValue2;
 
@@ -67,8 +67,8 @@ void setup() {
 
   Serial.begin(9600);
 
-  // calibrate our pots
-  while (millis() < 5000) {
+  // calibrate our sensors
+  while (millis() < 6000) {
   	sensorValue1 = analogRead(sensor1);
 
   	if (sensorValue1 > sensorHigh1) {
@@ -120,8 +120,8 @@ void readSensors() {
   // turn off the last position:
   pixels[x][y] = HIGH;
   // read the sensors for X and Y values:
-  x = 3 - map(analogRead(A2), 0, 650, 0, 3);
-  y = map(analogRead(A1), 0, 650, 0, 3);
+  x = 3 - map(analogRead(sensor1), sensorLow1, sensorHigh1, 0, 3);
+  y = map(analogRead(sensor2), sensorLow2, sensorHigh2, 0, 3);
 
 
   // Serial.print("Sensor A2: ");
